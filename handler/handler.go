@@ -26,7 +26,7 @@ func HandleShortenUrl(w http.ResponseWriter, r *http.Request) {
 	}
 
 	shorten := util.MakeShortenUrl(parameter.Url)
-	storage.SetUrl(shorten, parameter.Url)
+	storage.Set(shorten, parameter.Url)
 
 	w.Write(util.CreateShortenResponse(shorten))
 }
@@ -41,6 +41,6 @@ func HandleOriginalUrl(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	original := storage.GetUrl(parameter.Short)
+	original := storage.Get(parameter.Short)
 	w.Write(util.CreateOriginalResponse(original))
 }
