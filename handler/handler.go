@@ -11,6 +11,10 @@ type originalParameter struct {
 	Url string
 }
 
+type shortenParameter struct {
+	Short string
+}
+
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	decoder := json.NewDecoder(r.Body)
@@ -25,4 +29,18 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	storage.SetUrl(shorten, parameter.Url)
 
 	w.Write(util.CreateShortenResponse(shorten))
+}
+
+func OriginalHandler(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+	decoder := json.NewDecoder(r.Body)
+
+	var parameter shortenParameter
+	err := decoder.Decode(&parameter)
+	if err != nil {
+		panic(err)
+	}
+
+	original := storage.GetUrl(parameter.Short)
+	w.Write(util.CreateOriginalResponse(original))
 }

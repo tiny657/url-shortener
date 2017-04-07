@@ -8,10 +8,12 @@ import (
 const (
 	port = ":8080"
 	originUrl = "/original"
+	shortenUrl = "/shorten"
 )
 
 func StartServer() {
-	http.HandleFunc(originUrl, handler.ShortenHandler);
+	http.HandleFunc(shortenUrl, handler.ShortenHandler);
+	http.HandleFunc(originUrl, handler.OriginalHandler);
 
 	http.ListenAndServe(port, nil)
 }
