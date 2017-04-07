@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"github.com/tiny657/url-shortener/util"
+	"github.com/tiny657/url-shortener/handler"
 )
 
 const (
@@ -11,6 +11,6 @@ const (
 )
 
 func main() {
-	http.HandleFunc(shortenUrl, util.ShortenHandler)
+	http.HandleFunc(shortenUrl, handler.ShortenHandler)
 	http.ListenAndServe(port, nil)
 }

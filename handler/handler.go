@@ -1,8 +1,9 @@
-package util
+package handler
 
 import (
 	"net/http"
 	"encoding/json"
+	"github.com/tiny657/url-shortener/util"
 )
 
 type originalParameter struct {
@@ -19,9 +20,9 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	shorten := MakeShortenUrl(parameter.Url)
+	shorten := util.MakeShortenUrl(parameter.Url)
 
-	w.Write(CreateShortenResponse(shorten))
+	w.Write(util.CreateShortenResponse(shorten))
 }
 
 
