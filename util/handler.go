@@ -2,13 +2,26 @@ package util
 
 import (
 	"net/http"
-	"io/ioutil"
+	"encoding/json"
 )
+
+type originalParameter struct {
+	Url string
+}
 
 func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var original, _ = ioutil.ReadAll(r.Body)
+	decoder := json.NewDecoder(r.Body)
 
-	var shorten = MakeShortenUrl(string(original))
-	w.Write([]byte(shorten))
+	var parameter originalParameter
+	err := decoder.Decode(&parameter)
+	if err != nil {
+		panic(err)
+	}
+
+	shorten := MakeShortenUrl(parameter.Url)
+
+	w.Write(CreateShortenResponse(shorten))
 }
+
+
