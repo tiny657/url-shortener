@@ -12,8 +12,8 @@ const (
 )
 
 func StartServer() {
-	http.HandleFunc(shortenUrl, handler.ShortenHandler);
-	http.HandleFunc(originUrl, handler.OriginalHandler);
+	http.HandleFunc(shortenUrl, handler.HandleShortenUrl);
+	http.HandleFunc(originUrl, handler.HandleOriginalUrl);
 
 	http.ListenAndServe(port, nil)
 }

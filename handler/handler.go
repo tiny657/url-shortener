@@ -15,7 +15,7 @@ type shortenParameter struct {
 	Short string
 }
 
-func ShortenHandler(w http.ResponseWriter, r *http.Request) {
+func HandleShortenUrl(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	decoder := json.NewDecoder(r.Body)
 
@@ -31,7 +31,7 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(util.CreateShortenResponse(shorten))
 }
 
-func OriginalHandler(w http.ResponseWriter, r *http.Request) {
+func HandleOriginalUrl(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	decoder := json.NewDecoder(r.Body)
 
