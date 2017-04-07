@@ -20,3 +20,6 @@
 - Used Redis key value store.  
 - Keys are shortenUrl made by SHA1.
 - Values are originalUrl
+
+# Demo
+[![asciicast](https://asciinema.org/a/7owr9o6eib38wfk0pdaeb5zi9.png)](https://asciinema.org/a/7owr9o6eib38wfk0pdaeb5zi9)
