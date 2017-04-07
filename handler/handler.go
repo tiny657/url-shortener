@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/tiny657/url-shortener/util"
+	"github.com/tiny657/url-shortener/storage"
 )
 
 type originalParameter struct {
@@ -21,8 +22,7 @@ func ShortenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	shorten := util.MakeShortenUrl(parameter.Url)
+	storage.SetUrl(shorten, parameter.Url)
 
 	w.Write(util.CreateShortenResponse(shorten))
 }
-
-
